@@ -1,183 +1,418 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Saya di GitHub</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        nav {
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-        }
-        
-        nav ul li {
-            padding: 1rem;
-        }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        nav ul li a:hover {
-            color: #6e8efb;
-        }
-        
-        .hero {
-            text-align: center;
-            padding: 4rem 0;
-            background-color: #fff;
-            margin: 2rem auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .hero h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #6e8efb;
-        }
-        
-        .hero p {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto;
-            color: #666;
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .feature-card {
-            background-color: #fff;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .feature-card h3 {
-            color: #6e8efb;
-            margin-bottom: 1rem;
-        }
-        
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
-        }
-        
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero {
-                padding: 2rem 1rem;
-            }
-            
-            .hero h2 {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skava — Games • Comics • Anime</title>
+  <meta name="description" content="Skava is a futuristic platform for indie games, comics, and anime — with a built‑in AI guide and flexible payments." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#070815;
+      --panel:rgba(255,255,255,.06);
+      --panel-2:rgba(255,255,255,.08);
+      --text:#e8ecff;
+      --muted:#aab3ff;
+      --brand:#7a7cff;
+      --brand-2:#47ffe0;
+      --accent:#ff59ca;
+      --ok:#63ffa1;
+      --warn:#ffd166;
+      --danger:#ff6b6b;
+      --radius:18px;
+      --shadow:0 10px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      color:var(--text); background:radial-gradient(1200px 900px at 20% -10%, #1d2148 0%, transparent 60%), radial-gradient(1000px 700px at 120% 10%, #0b2740 0%, transparent 58%), var(--bg);
+      overflow-x:hidden;
+    }
+    /* Subtle animated stars */
+    .stars{position:fixed; inset:0; pointer-events:none; background-image:radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.25) 35%, transparent 36%), radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,.25) 35%, transparent 36%), radial-gradient(2px 2px at 40% 80%, rgba(255,255,255,.25) 35%, transparent 36%); animation: twinkle 8s linear infinite; opacity:.45}
+    @keyframes twinkle{0%,100%{filter:brightness(1)}50%{filter:brightness(1.3)}}
+
+    .container{max-width:1200px; margin:0 auto; padding:24px}
+    .nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(12px); background:linear-gradient(180deg, rgba(7,8,21,.85), rgba(7,8,21,.35)); border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-inner{display:flex; align-items:center; gap:18px; padding:14px 24px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.5px}
+    .brand .logo{width:36px; height:36px; border-radius:14px; background:conic-gradient(from 210deg, var(--brand), var(--brand-2), var(--accent)); box-shadow:0 0 24px rgba(122,124,255,.6)}
+    .brand span{font-size:1.2rem}
+    .nav-links{margin-left:auto; display:flex; gap:16px; flex-wrap:wrap}
+    .nav-links a{color:var(--muted); text-decoration:none; padding:8px 12px; border-radius:12px}
+    .nav-links a:hover{background:var(--panel); color:var(--text)}
+
+    .hero{padding:84px 24px 40px; position:relative}
+    .hero .grid{display:grid; grid-template-columns:1.2fr .8fr; gap:28px}
+    .card{background:linear-gradient(180deg, var(--panel-2), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .glass{backdrop-filter:blur(12px)}
+    h1{margin:0 0 10px; font-size:clamp(32px, 4.4vw, 58px); line-height:1.05}
+    .tagline{color:var(--muted); margin:8px 0 20px; font-weight:300}
+    .cta{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{appearance:none; border:0; border-radius:14px; padding:12px 16px; font-weight:600; cursor:pointer; transition:.2s transform, .2s filter; display:inline-flex; align-items:center; gap:10px}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#0a0c16}
+    .btn.secondary{background:var(--panel); color:var(--text); border:1px solid rgba(255,255,255,.08)}
+
+    .hero-visual{display:grid; place-items:center; padding:28px}
+    .orb{width:min(420px, 90%); aspect-ratio:1/1; border-radius:50%; background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), rgba(255,255,255,.05) 38%, transparent 39%), conic-gradient(from 220deg, rgba(122,124,255,.9), rgba(71,255,224,.85), rgba(255,89,202,.85), rgba(122,124,255,.9)); box-shadow:0 0 120px rgba(122,124,255,.35), inset 0 0 90px rgba(255,255,255,.08)}
+
+    /* Tabs */
+    .tabs{margin-top:28px; display:flex; gap:8px; flex-wrap:wrap}
+    .tab{padding:10px 14px; background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:12px; color:var(--muted); cursor:pointer}
+    .tab.active{background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); color:var(--text)}
+
+    .sections{margin-top:18px; display:grid; grid-template-columns:repeat(3, 1fr); gap:18px}
+    .tile{padding:18px; border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow); position:relative; overflow:hidden}
+    .tile h3{margin:.2rem 0 .4rem}
+    .pill{display:inline-flex; align-items:center; gap:8px; font-size:.78rem; color:#0b1325; background:linear-gradient(135deg, var(--brand-2), #e0fffd); padding:6px 10px; border-radius:999px; font-weight:700}
+    .sm{font-size:.9rem; color:var(--muted)}
+
+    .row{display:grid; grid-template-columns:2fr 1fr; gap:18px}
+
+    .list{display:grid; gap:12px; margin-top:10px}
+    .item{display:flex; gap:14px; align-items:center; padding:12px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius:14px}
+    .cover{width:56px; height:56px; border-radius:12px; background:linear-gradient(135deg, var(--brand), var(--accent)); display:grid; place-items:center; font-weight:800; color:#0b0f1c}
+
+    /* Payments */
+    .payments{display:grid; grid-template-columns:repeat(5, minmax(120px,1fr)); gap:14px; margin-top:14px}
+    .pay{display:flex; align-items:center; justify-content:center; height:64px; border-radius:14px; background:var(--panel); border:1px solid rgba(255,255,255,.08)}
+
+    /* Creator hub */
+    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+
+    /* Footer */
+    footer{margin-top:32px; padding:24px; color:var(--muted)}
+
+    /* Chatbot */
+    .bot-launch{position:fixed; right:22px; bottom:22px; z-index:60}
+    .bot-btn{border:0; background:linear-gradient(135deg, var(--brand), var(--accent)); width:58px; height:58px; border-radius:16px; box-shadow:0 14px 40px rgba(122,124,255,.45); cursor:pointer}
+    .bot{position:fixed; right:22px; bottom:90px; width:min(360px, calc(100vw - 32px)); height:520px; background:linear-gradient(180deg, rgba(19,22,48,.96), rgba(14,16,34,.96)); border:1px solid rgba(255,255,255,.1); border-radius:22px; box-shadow:var(--shadow); display:none; flex-direction:column; overflow:hidden; z-index:70}
+    .bot header{display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid rgba(255,255,255,.08)}
+    .dot{width:10px; height:10px; border-radius:999px; background:var(--ok); box-shadow:0 0 10px var(--ok)}
+    .bot main{flex:1; overflow:auto; padding:14px; display:flex; flex-direction:column; gap:10px}
+    .msg{max-width:85%; padding:10px 12px; border-radius:14px; line-height:1.35}
+    .ai{align-self:flex-start; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08)}
+    .me{align-self:flex-end; background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#0b0f1c; font-weight:700}
+    .bot footer{display:flex; gap:8px; padding:12px; border-top:1px solid rgba(255,255,255,.08)}
+    .bot input{flex:1; padding:12px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:12px; color:var(--text)}
+    .bot .send{padding:12px 14px; background:var(--panel); border:1px solid rgba(255,255,255,.12); border-radius:12px; color:var(--text)}
+
+    /* Responsive */
+    @media (max-width:960px){
+      .hero .grid{grid-template-columns:1fr}
+      .sections{grid-template-columns:1fr}
+      .row{grid-template-columns:1fr}
+      .payments{grid-template-columns:repeat(2,1fr)}
+      .grid-2{grid-template-columns:1fr}
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Website Saya di GitHub</h1>
-            <p>Selamat datang di website pertama saya yang dihosting di GitHub</p>
-        </div>
-    </header>
-    
-    <nav>
-        <ul>
-            <li><a href="#home">Beranda</a></li>
-            <li><a href="#about">Tentang</a></li>
-            <li><a href="#services">Layanan</a></li>
-            <li><a href="#contact">Kontak</a></li>
-        </ul>
-    </nav>
-    
-    <div class="container">
-        <section class="hero">
-            <h2>Selamat Datang di Website Saya</h2>
-            <p>Ini adalah contoh website statis yang dihosting di GitHub Pages. Anda dapat menggunakannya sebagai titik awal untuk membuat website pribadi, portofolio, atau proyek Anda.</p>
-        </section>
-        
-        <section class="features">
-            <div class="feature-card">
-                <h3>Mudah Digunakan</h3>
-                <p>GitHub Pages menyediakan hosting gratis yang mudah digunakan untuk website statis dengan integrasi Git yang mulus.</p>
-            </div>
-            
-            <div class="feature-card">
-                <h3>Custom Domain</h3>
-                <p>Anda dapat menggunakan nama domain custom untuk website GitHub Pages Anda agar terlihat lebih profesional.</p>
-            </div>
-            
-            <div class="feature-card">
-                <h3>Otomatis Update</h3>
-                <p>Setiap kali Anda push perubahan ke repository GitHub, website akan otomatis terupdate dalam hitungan detik.</p>
-            </div>
-        </section>
+  <div class="stars" aria-hidden="true"></div>
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand" aria-label="Skava home">
+        <div class="logo" role="img" aria-label="Skava Logo"></div>
+        <span>Skava</span>
+      </div>
+      <div class="nav-links">
+        <a href="#explore">Explore</a>
+        <a href="#payments">Payments</a>
+        <a href="#creator">Creator Hub</a>
+        <a href="#ai">Skava AI</a>
+      </div>
     </div>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 Website Saya. Dibuat dengan ❤️ menggunakan GitHub Pages.</p>
+  </nav>
+
+  <header class="hero container">
+    <div class="grid">
+      <section class="card glass" style="padding:22px">
+        <h1>Publish your <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">Games, Comics & Anime</span></h1>
+        <p class="tagline">Skava adalah platform masa depan untuk kreator. Jual game, rilis komik, tayangkan anime — lengkap dengan AI asisten, katalog modular, dan pembayaran fleksibel.</p>
+        <div class="cta">
+          <button class="btn primary" onclick="document.getElementById('explore').scrollIntoView({behavior:'smooth'})">Start Exploring</button>
+          <button class="btn secondary" onclick="document.getElementById('creator').scrollIntoView({behavior:'smooth'})">Become a Creator</button>
         </div>
+        <div class="tabs" role="tablist" aria-label="Skava content categories">
+          <button class="tab active" data-tab="games" role="tab" aria-selected="true">Games</button>
+          <button class="tab" data-tab="comics" role="tab">Comics</button>
+          <button class="tab" data-tab="anime" role="tab">Anime & Film</button>
+        </div>
+        <div id="explore" class="sections" aria-live="polite" aria-busy="false">
+          <!-- Games (default) -->
+          <div class="tile" data-panel="games">
+            <span class="pill">Featured Game</span>
+            <h3>Nova Crest</h3>
+            <p class="sm">ARPG sci‑fantasy: taklukkan menara plasma, kuasai crest runic, dan bentuk aliansi antarbintang.</p>
+            <div class="list">
+              <div class="item">
+                <div class="cover" aria-hidden="true">NC</div>
+                <div style="flex:1">
+                  <strong>Nova Crest — Founder’s Edition</strong>
+                  <div class="sm">Includes beta access, cosmetic set “Stellar Seraph”, and artbook PDF.</div>
+                </div>
+                <button class="btn primary" onclick="openCheckout('Nova Crest — Founder’s Edition', '29.99')">Buy $29.99</button>
+              </div>
+              <div class="item">
+                <div class="cover">D4</div>
+                <div style="flex:1">
+                  <strong>Drift: Phase Meridian</strong>
+                  <div class="sm">Roguelite racer set on collapsing ringworld corridors.</div>
+                </div>
+                <button class="btn secondary" onclick="notify('Added to wishlist')">Wishlist</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comics -->
+          <div class="tile" data-panel="comics" style="display:none">
+            <span class="pill">New Series</span>
+            <h3>Chromage: Aether Sketch</h3>
+            <p class="sm">Seorang ilustrator menemukan tinta hidup yang membuka portal ke dimensi warna.</p>
+            <div class="list">
+              <div class="item">
+                <div class="cover">C1</div>
+                <div style="flex:1">
+                  <strong>Issue #1 — First Stroke</strong>
+                  <div class="sm">40 halaman, digital HD, bonus sketsa konsep.</div>
+                </div>
+                <button class="btn primary" onclick="openCheckout('Chromage #1', '3.99')">Buy $3.99</button>
+              </div>
+              <div class="item">
+                <div class="cover">CR</div>
+                <div style="flex:1">
+                  <strong>Chrona Rift</strong>
+                  <div class="sm">Time‑heist anthology dari perspektif penjaga arsip kosmik.</div>
+                </div>
+                <button class="btn secondary" onclick="notify('Added to library')">Add</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Anime & Film -->
+          <div class="tile" data-panel="anime" style="display:none">
+            <span class="pill">Now Airing</span>
+            <h3>Stellar Seraph</h3>
+            <p class="sm">Android malaikat mengawal koloni manusia di tepi nebula — musik orkestra & synthwave.</p>
+            <div class="list">
+              <div class="item">
+                <div class="cover">EP</div>
+                <div style="flex:1">
+                  <strong>Episode 1 — Awakening at Dawnline</strong>
+                  <div class="sm">24 menit, sub EN/ID/JP, 1080p.</div>
+                </div>
+                <button class="btn primary" onclick="openCheckout('Stellar Seraph S1', '9.99')">Pass $9.99</button>
+              </div>
+              <div class="item">
+                <div class="cover">HF</div>
+                <div style="flex:1">
+                  <strong>Echoes of Halcyon (Film)</strong>
+                  <div class="sm">Film sci‑fantasy independen tentang memori kota yang hidup.</div>
+                </div>
+                <button class="btn secondary" onclick="notify('Trailer playing…')">Trailer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card glass hero-visual" aria-hidden="true">
+        <div class="orb"></div>
+        <p class="sm" style="text-align:center; margin-top:12px; color:var(--muted)">Futuristic aesthetic • Glassmorphism • Neon gradients</p>
+      </aside>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="payments" class="card glass" style="padding:22px">
+      <h2 style="margin:0 0 6px">Flexible Payments</h2>
+      <p class="sm">Dukungan multi‑metode pembayaran (demo UI). Integrasi nyata melalui Stripe, PayPal, atau Midtrans/Xendit — tinggal sambung API di backend Anda.</p>
+      <div class="payments" aria-label="Supported payments (demo)">
+        <div class="pay" title="Credit / Debit">💳&nbsp;Card</div>
+        <div class="pay" title="PayPal">🅿️&nbsp;PayPal</div>
+        <div class="pay" title="Apple Pay">&nbsp;Pay</div>
+        <div class="pay" title="Google Pay">G&nbsp;Pay</div>
+        <div class="pay" title="Crypto (demo)">₿&nbsp;Crypto</div>
+      </div>
+
+      <div class="row" style="margin-top:18px">
+        <div class="tile">
+          <h3>Checkout (Demo)</h3>
+          <p class="sm">Klik salah satu tombol <em>Buy</em> di atas untuk membuka modal checkout percobaan.</p>
+          <div id="checkout-log" class="sm" style="opacity:.85"></div>
+        </div>
+        <div class="tile">
+          <h3>Security</h3>
+          <ul class="sm">
+            <li>HTTPS by default (GitHub Pages).</li>
+            <li>Client‑side validation UI.</li>
+            <li>Server‑side payments via provider of choice.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="creator" class="card glass" style="padding:22px; margin-top:18px">
+      <h2 style="margin:0 0 6px">Skava Creator Hub</h2>
+      <p class="sm">Untuk dev game, komikus, dan kreator anime/film. Unggah proyek, atur harga, rilis update, dan kelola komunitas.</p>
+      <div class="grid-2" style="margin-top:10px">
+        <div class="tile">
+          <h3>Fitur Inti</h3>
+          <ul class="sm" style="line-height:1.6">
+            <li>Catalog & versioning untuk game (changelogs, builds).</li>
+            <li>Reader komik (pagination, panel view, watermark opsional).</li>
+            <li>Streaming VOD anime/film dengan subtitle multi‑bahasa.</li>
+            <li>Kupon, pre‑order, bundling, dan loyalty points.</li>
+            <li>Marketplace aset (soundtrack, artbook, skin).</li>
+          </ul>
+        </div>
+        <div class="tile">
+          <h3>Kirim Proyek</h3>
+          <form id="submit-form" onsubmit="event.preventDefault(); notify('Thanks! Your project draft is saved locally.'); this.reset();">
+            <label class="sm">Judul</label>
+            <input required name="title" placeholder="Judul proyek" style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06); color:var(--text); margin:6px 0 10px">
+            <label class="sm">Kategori</label>
+            <select name="cat" style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06); color:var(--text); margin:6px 0 10px">
+              <option>Game</option>
+              <option>Comic</option>
+              <option>Anime / Film</option>
+            </select>
+            <label class="sm">Deskripsi</label>
+            <textarea name="desc" rows="3" placeholder="Ceritakan proyekmu" style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06); color:var(--text); margin:6px 0 12px"></textarea>
+            <button class="btn primary" type="submit">Save Draft</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal Checkout (demo only) -->
+    <dialog id="checkout" style="border:0; border-radius:18px; padding:0; width:min(560px, 92vw); background:linear-gradient(180deg, #121530, #0c0f26); color:var(--text)">
+      <div style="padding:18px 18px 6px; display:flex; align-items:center; gap:10px; border-bottom:1px solid rgba(255,255,255,.08)">
+        <div class="logo" style="width:28px; height:28px"></div>
+        <strong>Skava Checkout</strong>
+        <button onclick="document.getElementById('checkout').close()" class="btn secondary" style="margin-left:auto; padding:8px 10px">Close</button>
+      </div>
+      <div style="padding:18px; display:grid; gap:12px">
+        <div id="checkout-item" class="sm"></div>
+        <div class="grid-2">
+          <div class="tile">
+            <h4 style="margin:.2rem 0">Billing</h4>
+            <input placeholder="Name on card" style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06); color:var(--text); margin:6px 0 10px">
+            <input placeholder="Email" type="email" style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06); color:var(--text); margin:6px 0 10px">
+          </div>
+          <div class="tile">
+            <h4 style="margin:.2rem 0">Card</h4>
+            <input placeholder="1234 5678 9012 3456" inputmode="numeric" style="width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06); color:var(--text); margin:6px 0 10px">
+            <div style="display:flex; gap:10px">
+              <input placeholder="MM/YY" style="flex:1; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06); color:var(--text)">
+              <input placeholder="CVC" style="flex:1; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06); color:var(--text)">
+            </div>
+          </div>
+        </div>
+        <button class="btn primary" onclick="notify('Demo payment succeeded ✔'); document.getElementById('checkout').close()">Pay Now</button>
+        <div class="sm" style="opacity:.8">Demo only. For production, integrate Stripe/PayPal/Midtrans in your backend.</div>
+      </div>
+    </dialog>
+  </main>
+
+  <!-- Skava AI (floating chatbot) -->
+  <div id="ai" class="bot" role="dialog" aria-label="Skava AI Assistant" aria-modal="false">
+    <header>
+      <div class="dot" aria-hidden="true"></div>
+      <strong>Skava AI</strong>
+      <span class="sm" style="margin-left:auto; color:var(--muted)">beta</span>
+    </header>
+    <main id="bot-stream">
+      <div class="msg ai">Hi! Aku Skava AI. Mau cari <b>Nova Crest</b>, baca komik <b>Chromage</b>, atau tonton <b>Stellar Seraph</b>?</div>
+      <div class="msg ai">Ketik: <code>games</code>, <code>comics</code>, <code>anime</code>, atau <code>help</code>.</div>
+    </main>
+    <footer>
+      <input id="bot-input" placeholder="Type a message… (demo offline)" aria-label="Chat input" />
+      <button class="send" onclick="botSend()">Send</button>
     </footer>
+  </div>
+  <div class="bot-launch"><button class="bot-btn" aria-label="Open Skava AI" onclick="toggleBot()"></button></div>
+
+  <footer class="container sm" style="opacity:.8">
+    <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center">
+      <div class="brand"><div class="logo" style="width:22px; height:22px"></div><span>Skava</span></div>
+      <div style="margin-left:auto">© <span id="year"></span> Skava. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('[data-panel]');
+    tabs.forEach(t=>{
+      t.addEventListener('click',()=>{
+        tabs.forEach(x=>{x.classList.remove('active'); x.setAttribute('aria-selected','false')});
+        t.classList.add('active'); t.setAttribute('aria-selected','true');
+        const name=t.dataset.tab; panels.forEach(p=>p.style.display=p.dataset.panel===name?'block':'none');
+      });
+    });
+
+    function notify(text){
+      const log=document.getElementById('checkout-log');
+      const span=document.createElement('div');
+      span.textContent='• '+text; span.style.marginTop='6px';
+      log.prepend(span);
+    }
+
+    function openCheckout(item, price){
+      document.getElementById('checkout-item').innerHTML = `<strong>Item:</strong> ${item}<br><strong>Price:</strong> $${price}`;
+      document.getElementById('checkout').showModal();
+      notify(`Checkout opened for ${item} ($${price})`);
+    }
+
+    // Chatbot (demo, no backend)
+    function toggleBot(){
+      const el=document.getElementById('ai');
+      const visible=getComputedStyle(el).display!=='none';
+      el.style.display=visible?'none':'flex';
+      if(!visible){
+        setTimeout(()=>{
+          document.getElementById('bot-input').focus();
+        },50);
+      }
+    }
+
+    function botSend(){
+      const input=document.getElementById('bot-input');
+      const stream=document.getElementById('bot-stream');
+      const text=input.value.trim(); if(!text) return;
+      appendMsg(text,'me');
+      input.value='';
+      // very simple command router
+      const t=text.toLowerCase();
+      if(['games','game','nova crest','nc'].includes(t)){
+        appendMsg('Mengarahkan ke Games → Nova Crest…','ai');
+        document.querySelector('.tab[data-tab="games"]').click();
+        document.getElementById('explore').scrollIntoView({behavior:'smooth'});
+      } else if(['comics','comic','manga','chromage'].includes(t)){
+        appendMsg('Mengarahkan ke Comics → Chromage…','ai');
+        document.querySelector('.tab[data-tab="comics"]').click();
+        document.getElementById('explore').scrollIntoView({behavior:'smooth'});
+      } else if(['anime','film','video','seraph','stellar'].includes(t)){
+        appendMsg('Mengarahkan ke Anime & Film…','ai');
+        document.querySelector('.tab[data-tab="anime"]').click();
+        document.getElementById('explore').scrollIntoView({behavior:'smooth'});
+      } else if(['help','?','menu'].includes(t)){
+        appendMsg('Perintah: games, comics, anime. Ketik judul: "Nova Crest", "Chromage", "Stellar Seraph".','ai');
+      } else {
+        appendMsg('(demo) Aku belum online. Coba: games / comics / anime / help.','ai');
+      }
+    }
+
+    function appendMsg(text, who){
+      const stream=document.getElementById('bot-stream');
+      const el=document.createElement('div'); el.className='msg '+(who==='me'?'me':'ai'); el.innerHTML=text; stream.appendChild(el); stream.scrollTop=stream.scrollHeight;
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
